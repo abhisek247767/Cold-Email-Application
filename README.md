@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Flowchart Email Marketing Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a MERN stack application for creating and managing email marketing sequences using a flowchart interface. It utilizes React Flow for frontend flowchart visualization, and Agenda with Nodemailer for backend scheduling and sending emails.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Create, edit, and delete flowchart nodes representing different email marketing steps.
+- Save flowchart configurations to a MongoDB database.
+- Schedule and send emails based on the flowchart configurations.
+- Custom node types including Cold Email, Wait/Delay, and Lead Source.
+- Display success messages upon successful operations.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend**: React, React Flow
+- **Backend**: Node.js, Express.js, Agenda, Nodemailer
+- **Database**: MongoDB
+- **Other**: Mongoose, Axios, dotenv, cors
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js installed on your machine
+- MongoDB instance (local or cloud)
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Clone the repository:**
+    ```sh
+    git clone https://github.com/abhisek247767/flowchart-email-marketing.git
+    cd flowchart-email-marketing
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. **Install dependencies:**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    - For the backend:
+        ```sh
+        cd backend
+        npm install
+        ```
 
-### `npm run eject`
+    - For the frontend:
+        ```sh
+        cd ../frontend
+        npm install
+        ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Set up environment variables:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - Create a `.env` file in the `backend` directory with the following content:
+        ```env
+        PORT=5000
+        MONGODB_URI=your_mongodb_uri
+        EMAIL_USER=your_emailid
+        EMAIL_PASS=your_email_password
+        ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Running the Application
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Start the backend server:**
+    ```sh
+    cd backend
+    npm start
+    ```
 
-## Learn More
+2. **Start the frontend development server:**
+    ```sh
+    cd ../frontend
+    npm start
+    ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Open the application:**
+    - Visit `http://localhost:3000` in your web browser.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+### Backend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **models/Flowchart.js**: Defines the Mongoose schema for flowcharts.
+- **routes/flowchart.js**: Contains the API endpoint for saving flowchart data.
+- **server.js**: Sets up the Express server, connects to MongoDB, and initializes Agenda and Nodemailer.
 
-### Analyzing the Bundle Size
+### Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **src/components/Flowchart.js**: Main component for rendering and managing the flowchart.
+- **src/components/ColdEmailNode.js**: Custom node component for Cold Email.
+- **src/components/WaitDelayNode.js**: Custom node component for Wait/Delay.
+- **src/components/LeadSourceNode.js**: Custom node component for Lead Source.
+- **src/App.js**: Main application component.
 
-### Making a Progressive Web App
+## API Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **POST /api/save-flowchart**: Saves the flowchart configuration to the database and schedules emails based on the nodes.
 
-### Advanced Configuration
+## Example Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+1. Add nodes representing different steps in your email marketing sequence (e.g., Cold Email, Wait/Delay, Lead Source).
+2. Connect the nodes using edges to define the flow of your sequence.
+3. Save the flowchart by clicking the "Save Flowchart" button.
+4. The application will store the configuration in the database and schedule the emails accordingly.
+5. Upon successful save, a message will be displayed indicating the flowchart has been saved successfully.
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
